@@ -27,12 +27,14 @@ var comp2 = function (arrArgs){
 
 // compN 
 var comp2 = function (arrArgs){
-  var finalFunction = arrArgs.reduce (function (prev, cur)) {
-    return prev(cur);
-  };
+  var finalFunction = arrArgs.reduce (function (f, g) {
+    return function (x) {
+      return f(g(x));
+    };
+  });  
   return function(x){
     return finalFunction(x);     
-  }	
+  };	
 } 
 
 
